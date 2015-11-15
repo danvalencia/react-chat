@@ -1,0 +1,24 @@
+{
+  "name": "reactjs-todo",
+  "version": "0.0.1",
+  "description": "A ToDo list web app using reactjs",
+  "main": "index.js",
+  "dependencies": {
+    "browserify": "12.0.1",
+    "express": "^4.13.3",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2"
+  },
+  "devDependencies": {
+    "gulp": "3.9.0",
+    "gulp-babel": "^6.1.0",
+    "babel-plugin-transform-react-jsx": "6.1.18",
+    "gulp-sourcemaps": "1.6.0",
+    "babel-preset-es2015": "6.1.18"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Daniel Valencia Backhoff (danvalencia@gmail.com)",
+  "license": "ISC"
+}
