@@ -1,8 +1,12 @@
 let React = require('react');
+let ChatPanel = require('./chatPanel')
 
 let ChatWindow = React.createClass({
-  render: () => {
-    return <h1>Hello, Chat Window!</h1>
+  render: function() {
+    return <div className="chat-window">
+            <h1>Hello, Chat Window!</h1>
+            <ChatPanel panelName="Hello World Panel"/>
+           </div>
   }
 });
 

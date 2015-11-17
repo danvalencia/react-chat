@@ -3,5 +3,5 @@ let ReactDOM = require('react-dom');
 let React = require('react');
 
 ReactDOM.render(
-  React.createElement(ChatWindow),
+  <ChatWindow />,
   document.getElementById('main'));
