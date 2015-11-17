@@ -1,13 +1,15 @@
-let React = require('react');
-let ChatPanel = require('./chatPanel')
+import React, {Component} from "react";
+import ChatPanel from "./chatPanel"
 
-let ChatWindow = React.createClass({
-  render: function() {
-    return <div className="chat-window">
-            <h1>Hello, Chat Window!</h1>
-            <ChatPanel panelName="Hello World Panel"/>
-           </div>
+class ChatWindow extends Component {
+  render() {
+    return (
+      <div className="chat-window">
+        <h1>Hello, Chat Window!</h1>
+        <ChatPanel panelName="Hello World Panel"/>
+      </div>
+    )
   }
-});
+}
 
 module.exports = ChatWindow;

@@ -1,12 +1,13 @@
-let React = require('react');
+import React, {Component} from "react";
 
-
-var ChatPanel = React.createClass({
-  render: function() {
-      return <div className="chat-panel">
-               {this.props.panelName}
-             </div>
-    }
-});
+class ChatPanel extends Component {
+  render() {
+    return (
+      <div className="chat-panel">
+         {this.props.panelName}
+      </div>
+    )
+  }
+}
 
 module.exports = ChatPanel;
