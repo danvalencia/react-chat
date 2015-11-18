@@ -3,13 +3,155 @@
   <head>
     <meta charset="utf-8">
     <title>React Chat</title>
-    <!-- <script src="https://fb.me/react-0.14.2.min.js"></script> -->
-    <!-- <script src="https://fb.me/react-dom-0.14.2.min.js"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <style media="screen">
+      body {
+        padding-top: 50px;
+      }
+
+      .starter-template {
+        padding: 40px 15px;
+        text-align: center;
+        min-height: 100%;
+      }
+
+      .message-input > textarea {
+        width: 100%
+      }
+
+      .with-border {
+        border-width: thin;
+        border-style: solid;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      li {
+        text-align: right;
+      }
+
+      .message-row {
+        border-style: dashed;
+        border-width: thin;
+      }
+
+      .message-author {
+        float: left;
+        font-style: italic;
+      }
+
+      .message-text {
+        text-align: right;
+        /*float: right;*/
+      }
+
+      .chat-panel {
+        height: 100%
+      }
+
+      html{
+        height: 100%;
+      }
+
+      body {
+        min-height: 100%;
+      }
+
+    </style>
   </head>
   <body>
-    <div id="main">
-      Hello Main Div
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">React Chat</a>
+        </div>
+        <!-- <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>-->
+      </div>
+    </nav>
+    <div id="container">
+      <div class="starter-template">
+        <div class="chat-window row">
+          <div class="chat-panel col-md-8 with-border">
+            <div class="chat-title">
+              <h4>My Chat</h4>
+            </div>
+            <div class="message-panel">
+              <div class="message-row">
+                <div class="message-author">
+                  Daniel Valencia
+                </div>
+                <div class="message-text">
+                  Hi, how are you?
+                </div>
+              </div>
+              <div class="message-row">
+                <div class="message-author">
+                  Paulina Julian
+                </div>
+                <div class="message-text">
+                  Very good, thanks! How about you ?
+                </div>
+              </div>
+              <div class="message-row">
+                <div class="message-author">
+                  Daniel Valencia
+                </div>
+                <div class="message-text">
+                  I'm doing good too! Nice talking to you.
+                </div>
+              </div>
+            </div>
+            <div class="message-input" >
+              <textarea name="name" rows="4"></textarea>
+            </div>
+          </div>
+          <div class="user-panel col-md-4 with-border">
+            <div class="user-panel-title">
+              <h4>Users</h4>
+            </div>
+            <ul>
+              <li>
+                <div class="user-cell">
+                  <div class="user-img">
+                  </div>
+                  <div class="user-name">
+                    Daniel Valencia
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="user-cell">
+                  <div class="user-img">
+                  </div>
+                  <div class="user-name">
+                    Paulina Julian
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <script type="text/javascript" src="/bundle.js"></script>
+    <!-- <script type="text/javascript" src="/bundle.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
   </body>
 </html>
