@@ -1,12 +1,13 @@
 import React, {Component} from "react";
 import ChatPanel from "./chatPanel"
+import UserPanel from "./userPanel"
 
 class ChatWindow extends Component {
   render() {
     return (
-      <div className="chat-window">
-        <h1>Hello, Chat Window!</h1>
-        <ChatPanel panelName="Hello World Panel"/>
+      <div className="chat-window row">
+        <ChatPanel chatTitle="My Chat" />
+        <UserPanel userPanelTitle="Users"/>
       </div>
     )
   }
