@@ -3,6 +3,10 @@ import React, {Component} from "react";
 const styles = {
   textArea: {
     width: '100%'
+  },
+
+  title: {
+    textAlign: "right"
   }
 }
 
@@ -10,7 +14,7 @@ class UserPanel extends Component {
   render() {
     return (
       <div className="user-panel col-md-4 with-border">
-        <div className="user-panel-title">
+        <div className="user-panel-title" style={styles.title}>
           <h4>{this.props.userPanelTitle}</h4>
         </div>
         <ul>

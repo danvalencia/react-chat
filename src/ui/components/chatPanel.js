@@ -1,22 +1,63 @@
-import React, {Component} from "react";
-import MessageList from "./messageList"
+import React, {Component} from 'react';
+import MessageList from './messageList';
 
 const styles = {
   textArea: {
-    width: "100%"
+    width: "90%"
+  },
+
+  button: {
+    width: "10%"
+  },
+
+  chatTitle: {
+    textAlign: "left"
   }
 }
 
 class ChatPanel extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {value: 'Enter your message here...',
+                  messages: []};
+  }
+
+  handleTextAreaChange() {
+    this.setState({value: event.target.value});
+  }
+
+  handleBroadcastMessage(message) {
+    console.log(`Message is ${message}`);
+    // this.setState((previousState, currentProps) => {
+    //   previousState.messages.push()
+    // })
+  }
+
+  handleMessageSend(webSocket) {
+    const message = this.refs.messageInput.value;
+    console.log(`Message to send is: ${message}`)
+    webSocket.emit('chat message', message);
+  }
+
   render() {
+    const {webSocket, chatTitle} = this.props;
+    const {value, messages} = this.state;
+
+    webSocket.on('chat message', this.handleBroadcastMessage);
+
     return (
       <div className="chat-panel col-md-8 with-border">
-        <div className="chat-title">
+        <div style={styles.chatTitle}>
           <h4>{this.props.chatTitle}</h4>
         </div>
-        <MessageList />
+        <MessageList value={messages}/>
         <div className="message-input" >
-          <textarea style={styles.textArea} name="message-input-txt-area" rows="4"></textarea>
+          <textarea ref="messageInput"
+                    style={styles.textArea} name="message-input-txt-area" rows="2"
+                    value={value}
+                    onChange={this.handleTextAreaChange.bind(this)}></textarea>
+          <button style={styles.button} onClick={this.handleMessageSend.bind(this, webSocket)}>Send</button>
         </div>
       </div>
     )
