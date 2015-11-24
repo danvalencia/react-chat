@@ -24,37 +24,61 @@ class ChatPanel extends Component {
                   messages: []};
   }
 
-
   handleTextAreaChange() {
-    this.setState({value: event.target.value});
+    let newState = {
+      ...this.state,
+      value: event.target.value
+    };
+
+    this.setState(newState);
   }
 
   handleBroadcastMessage(message) {
     console.log(`Message is ${message}`);
 
-    // this.setState((previousState, currentProps) => {
-    //   previousState.messages.push()
-    // })
+    let newMessageState = [
+      ...this.state.messages,
+      message
+    ];
+
+    this.setState({
+      ...this.state,
+      messages: newMessageState
+    });
   }
+
 
   handleMessageSend(webSocket) {
     const message = this.refs.messageInput.value;
     console.log(`Message to send is: ${message}`)
-    webSocket.emit('chat message', message);
+    webSocket.emit('NEW_MESSAGE', this.buildMessage(message));
+
+    this.setState({
+      ...this.state,
+      value: this.defaultAreaMessage
+    });
+  }
+
+  buildMessage(message) {
+    let id = new Date().getTime();
+    return {
+      text: message,
+      id: id
+    }
   }
 
   render() {
     const {webSocket, chatTitle} = this.props;
     const {value, messages} = this.state;
 
-    webSocket.on('chat message', this.handleBroadcastMessage);
+    webSocket.on('NEW_MESSAGE', this.handleBroadcastMessage.bind(this));
 
     return (
       <div className="chat-panel col-md-8 with-border">
         <div style={styles.chatTitle}>
           <h4 onClick={() => {alert('click!')}}>{this.props.chatTitle}</h4>
         </div>
-        <MessageList value={messages}/>
+        <MessageList messages={messages}/>
         <div className="message-input" >
           <textarea ref="messageInput"
                     style={styles.textArea} name="message-input-txt-area" rows="2"

@@ -12,7 +12,10 @@ var paths = {
 
 gulp.task("browserify", function () {
   browserify("src/ui/main.js")
-             .transform("babelify", {presets: ["es2015", "react"]})
+             .transform("babelify", {
+               presets: ["es2015", "react"],
+               plugins: ["babel-plugin-transform-object-rest-spread"]
+             })
              .bundle()
              .pipe(source('bundle.js'))
              .pipe(gulp.dest('dist'));

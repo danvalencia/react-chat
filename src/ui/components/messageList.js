@@ -3,14 +3,16 @@ import MessageRow from "./messageRow";
 
 class MessageList extends Component {
   render() {
+    const messages = this.props.messages;
+
+    let messageRows = messages.map((m) => {
+      return <MessageRow key={m.id} author={m.id}
+        text={m.text} />
+    });
+
     return (
       <div className="message-list">
-          <MessageRow author="Daniel Valencia"
-            text="Hi, how are you?" />
-          <MessageRow author="Paulina Julian"
-            text="Very good, thanks! How about you ?" />
-          <MessageRow author="Daniel Valencia"
-            text="I'm doing good too! Nice talking to you." />
+        {messageRows}
       </div>
     )
   }
