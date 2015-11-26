@@ -16,19 +16,18 @@ const styles = {
   }
 };
 
-class MessageRow extends Component {
-  render() {
-    return (
-      <div style={styles.layout}>
-        <div style={styles.authorLayout}>
-          {this.props.author}
-        </div>
-        <div style={styles.textLayout}>
-          {this.props.text}
-        </div>
+
+const MessageRow = ({author, text}) => {
+  return (
+    <div style={styles.layout}>
+      <div style={styles.authorLayout}>
+        {author}
       </div>
-    )
-  }
+      <div style={styles.textLayout}>
+        {text}
+      </div>
+    </div>
+  )
 }
 
 module.exports = MessageRow;

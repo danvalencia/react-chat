@@ -20,41 +20,39 @@ class ChatPanel extends Component {
   constructor(props) {
     super(props);
     this.defaultAreaMessage = '';
-    this.state = {value: this.defaultAreaMessage,
-                  messages: []};
+    this.state = {value: this.defaultAreaMessage};
+  }
+
+  componentDidMount() {
+    const { store } = this.context;
+    this.unsubscribe = store.subscribe(() => this.forceUpdate);
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   handleTextAreaChange() {
     let newState = {
-      ...this.state,
       value: event.target.value
     };
 
     this.setState(newState);
   }
 
-  handleBroadcastMessage(message) {
-    console.log(`Message is ${message}`);
-
-    let newMessageState = [
-      ...this.state.messages,
-      message
-    ];
-
-    this.setState({
-      ...this.state,
-      messages: newMessageState
-    });
-  }
-
-
-  handleMessageSend(webSocket) {
+  handleMessageSend(store) {
     const message = this.refs.messageInput.value;
     console.log(`Message to send is: ${message}`)
-    webSocket.emit('NEW_MESSAGE', this.buildMessage(message));
+
+    let id = new Date().getTime();
+    store.dispatch({
+      type: 'SEND_MESSAGE',
+      text: message,
+      id: id,
+      author: id
+    })
 
     this.setState({
-      ...this.state,
       value: this.defaultAreaMessage
     });
   }
@@ -68,17 +66,16 @@ class ChatPanel extends Component {
   }
 
   render() {
-    const {webSocket, chatTitle} = this.props;
     const {value, messages} = this.state;
-
-    webSocket.on('NEW_MESSAGE', this.handleBroadcastMessage.bind(this));
+    const { store } = this.context;
+    const state = store.getState()
 
     return (
       <div className="chat-panel col-md-8 with-border">
         <div style={styles.chatTitle}>
           <h4 onClick={() => {alert('click!')}}>{this.props.chatTitle}</h4>
         </div>
-        <MessageList messages={messages}/>
+        <MessageList messages={state}/>
         <div className="message-input" >
           <textarea ref="messageInput"
                     style={styles.textArea} name="message-input-txt-area" rows="2"
@@ -86,11 +83,15 @@ class ChatPanel extends Component {
                     onChange={this.handleTextAreaChange.bind(this)}
                     placeholder="Type to chat...">
           </textarea>
-          <button style={styles.button} onClick={this.handleMessageSend.bind(this, webSocket)}>Send</button>
+          <button style={styles.button} onClick={this.handleMessageSend.bind(this, store)}>Send</button>
         </div>
       </div>
     )
   }
+}
+
+ChatPanel.contextTypes = {
+  store: React.PropTypes.object
 }
 
 module.exports = ChatPanel;
